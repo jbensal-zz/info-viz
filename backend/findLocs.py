@@ -2,8 +2,9 @@
 
 from whodat import whodat
 import json
+import time
 #Read file in
-f = open("../data/jay_raw.txt", 'r')
+f = open("../data/welsh-hist.txt", 'r')
 line = f.readline()
 searches = {}
 locations = {}
@@ -27,6 +28,9 @@ while len(line)>0:
             if addr in locations:
                 loc = locations[addr]
             else:
+                if ".org" in addr:
+                    print "zzz"
+                    time.sleep(15)
                 loc = whodat(addr)
                 tried += 1
                 if loc == None:
@@ -65,5 +69,5 @@ for key, val in searches.iteritems():
     d["fillKey"] = 'bcolor'
     objs.append(d)
 
-with open("jay.json", 'w') as f:
+with open("welsh.json", 'w') as f:
     json.dump(objs, f)
