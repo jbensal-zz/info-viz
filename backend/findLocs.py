@@ -52,7 +52,6 @@ while len(line)>0:
             #Onto the next one!
             line = f.readline()
             words = line.split()
-            pass
     line = f.readline()
 f.close()
 print "percentage discarded: " + str(float(discarded) / float(tried))
