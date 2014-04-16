@@ -11,8 +11,12 @@ import requests, pythonwhois
 
 # given a domain, returns a lat,lng pair corresponding to the admin reported by WHOIS
 def whodat(host):
-	dat = pythonwhois.get_whois(host)["contacts"]["admin"]
-	addr = urlify(dat["street"], dat["city"], dat["state"], dat["country"])
+	dat = pythonwhois.get_whois(host)["contacts"]["registrant"]
+	state = ""
+	if "state" in dat.keys():
+		state = dat["state"]
+
+	addr = urlify(dat["street"], dat["city"], state, dat["country"])
 	return get_lat_lng(addr)
 
 # returns an address that get_lat_lng will take
