@@ -7,6 +7,8 @@ f = open("../data/jay_raw.txt", 'r')
 line = f.readline()
 searches = {}
 locations = {}
+tried = 0
+discarded = 0
 while len(line)>0:
     words = line.split()
     if len(words)>0 and words[0] == "Searched":
@@ -26,13 +28,22 @@ while len(line)>0:
                 loc = locations[addr]
             else:
                 loc = whodat(addr)
+                tried += 1
+                if loc == None:
+                    discarded += 1
                 locations[addr] = loc
             #save into dict for that location
             if loc != None:
                 if loc in searches:
-                    names, priorfreq = searches[loc]
-                    searches[loc] = (names+'\n'+term, freq+priorfreq)
-                searches[loc] = (term, freq)
+                    names, priorfreq, namedict = searches[loc]
+                    if term not in namedict:
+                        namedict[term] = term
+                        searches[loc] = (names+'\n'+term, freq+priorfreq, namedict)
+                else:
+                    d = {}
+                    d[term] = term
+                    searches[loc] = (term, freq, d)
+
 
             #Onto the next one!
             line = f.readline()
@@ -40,10 +51,11 @@ while len(line)>0:
             pass
     line = f.readline()
 f.close()
+print "percentage discarded: " + str(float(discarded) / float(tried))
 objs = []
 #Create json representing circle objects and print to file that javascript can read in
 for key, val in searches.iteritems():
-    (name, freq) = val
+    (name, freq, _) = val
     (lat, lng) = key
     d = {}
     d["name"] = name
