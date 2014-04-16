@@ -21,10 +21,11 @@ while len(line)>0:
             #find physical location for the address
             loc = whodat(addr)
             #save into dict for that location
-            if loc in searches:
-                names, priorfreq = searches[loc]
-                searches[loc] = (names+'\n'+term, freq+priorfreq)
-            searches[loc] = (term, freq)
+            if loc != None:
+                if loc in searches:
+                    names, priorfreq = searches[loc]
+                    searches[loc] = (names+'\n'+term, freq+priorfreq)
+                searches[loc] = (term, freq)
 
             #Onto the next one!
             line = f.readline()
