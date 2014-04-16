@@ -1,8 +1,9 @@
-
+from whodat import whodat
+import json
 #Read file in
-f = open("../data/welsh-hist.txt", 'r')
+f = open("../data/jay_raw.txt", 'r')
 line = f.readline()
-searches = []
+searches = {}
 while len(line)>0:
     words = line.split()
     if len(words)>0 and words[0] == "Searched":
@@ -18,14 +19,20 @@ while len(line)>0:
                 freq = 1
                 addr = words[-2]
             #find physical location for the address
-
+            loc = whodat(addr)
             #save into dict for that location
-            searches.append([term, addr, freq])
+            if loc in searches:
+                names, priorfreq = searches[loc]
+                searches[loc] = (names+'\n'+term, freq+priorfreq)
+            searches[loc] = (term, freq)
 
             #Onto the next one!
             line = f.readline()
             words = line.split()
             pass
     line = f.readline()
-print searches #TODO: Right now this is an array of arrays of the form [search term, address, frequency]
+f.close()
+f = open("jay.json", 'w')
+f.write(json.dump(searches))
+f.close()
 #Create json representing circle objects and print to file that javascript can read in
