@@ -6,6 +6,7 @@
 	<script src="js/d3.v3.min.js"></script>
 	<script src="js/topojson.min.js"></script>
 	<script src="js/datamaps.all.min.js"></script>
+  <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
 
   <button type="button" class="btn btn-default btn-lg"> Jay </button>
   <button type="button" class="btn btn-default btn-lg"> Ryan</button>
@@ -13,6 +14,7 @@
 	<div id="container1" style="position: relative; width: 1200px; max-height: 700px;">
 
 	<script>
+
 	var map = new Datamap({
         scope: 'world',
         element: document.getElementById('container1'),
@@ -26,34 +28,30 @@
         fills: {
           defaultFill: 'rgba(0, 63,76,1)',
           lt50: 'rgba(0,244,244,0.9)',
-          gt50: 'red'
+          gt50: 'red',
+          bcolor: 'red'
         },
 
         data: {
-      //    USA: {fillKey: 'lt50' },
-      //    RUS: {fillKey: 'lt50' },
-      //    CAN: {fillKey: 'lt50' },
-      //    BRA: {fillKey: 'gt50' },
-      //    ARG: {fillKey: 'gt50' },
-      //    COL: {fillKey: 'gt50' },
-      //    AUS: {fillKey: 'gt50' },
-      //    ZAF: {fillKey: 'gt50' },
-      //    MAD: {fillKey: 'gt50' }       
+        
         }
       })
-
+/*
        map.bubbles([
-       {name: 'Hot', latitude: 21.32, longitude: 5.32, radius: 10, fillKey: 'gt50'},
-       {name: 'Chilly', latitude: -25.32, longitude: 120.32, radius: 18, fillKey: 'lt50'},
-       {name: 'Hot again', latitude: 21.32, longitude: -84.32, radius: 8, fillKey: 'gt50'},
-       {name: 'Champaign', latitude: 40.113, longitude: -88.2612, radius: 5, fillKey: 'gt50'},
-       {name: 'CA', latitude: 37.42, longitude: -122.08, radius: 5, fillKey: 'gt50'}
-
+       {latitude: 37.785449, radius: 1, name: "bootstrap", longitude: -122.38978, fillKey: "bcolor"}, 
+       {"latitude": 46.8032826, "radius": 7, "name": "d3 heatmap example", "longitude": -71.242796, "fillKey": "bcolor"}
      ], {
        popupTemplate: function(geo, data) {
-         return "<div class='hoverinfo'>It is " + data.radius + "</div>" + "<div class='hoverinfo'>It is " + data.radius + "</div>";
+        return "<div class='hoverinfo'>Search Term: " + data.name + "</div>";
        }
      });
+*/
+
+      map.bubbles([{"latitude": 46.8032826, "radius": 4, "name": "d3 heatmap example", "longitude": -71.242796, "fillKey": "bcolor"}, {"latitude": 37.4219998, "radius": 4, "name": "chrome user data directory on mac", "longitude": -122.0839596, "fillKey": "bcolor"}, {"latitude": 40.7239514, "radius": 4, "name": "digitalocean", "longitude": -73.9964444, "fillKey": "bcolor"}, {"latitude": 37.3860517, "radius": 4, "name": "khan academy intern", "longitude": -122.0838511, "fillKey": "bcolor"}, {"latitude": 33.4941704, "radius": 4, "name": "silicon valley hbo", "longitude": -111.9260519, "fillKey": "bcolor"}, {"latitude": 37.707944, "radius": 5, "name": "git branches", "longitude": -121.868042, "fillKey": "bcolor"}, {"latitude": 40.6096698, "radius": 4, "name": "mv command", "longitude": -111.9391031, "fillKey": "bcolor"}, {"latitude": 37.8702455, "radius": 4, "name": "outside lands", "longitude": -122.3007003, "fillKey": "bcolor"}, {"latitude": 37.4424827, "radius": 4, "name": "MASS r", "longitude": -122.1572428, "fillKey": "bcolor"}, {"latitude": 37.7767592, "radius": 28, "name": "tw", "longitude": -122.4168323, "fillKey": "bcolor"}, {"latitude": 58.35610010000001, "radius": 4, "name": "intuitive design interfaces", "longitude": 26.7043146, "fillKey": "bcolor"}, {"latitude": 42.1120283, "radius": 4, "name": "define: sibling", "longitude": -72.5795522, "fillKey": "bcolor"}, {"latitude": 38.90419, "radius": 4, "name": "test", "longitude": -77.52377, "fillKey": "bcolor"}, {"latitude": 38.9493252, "radius": 4, "name": "any presence", "longitude": -77.3552311, "fillKey": "bcolor"}, {"latitude": 25.245118, "radius": 4, "name": "google chrome export history", "longitude": 87.634182, "fillKey": "bcolor"}, {"latitude": 40.7067798, "radius": 4, "name": "including a pdf in latex", "longitude": -74.0125956, "fillKey": "bcolor"}, {"latitude": 42.16129, "radius": 4, "name": "spoon university uiuc", "longitude": -87.824788, "fillKey": "bcolor"}, {"latitude": 37.0374222, "radius": 4, "name": "nba mock draft 2014", "longitude": -93.3188076, "fillKey": "bcolor"}, {"latitude": 51.51981230000001, "radius": 4, "name": "good rgba colors", "longitude": -0.7277509, "fillKey": "bcolor"}, {"latitude": 40.2067413, "radius": 4, "name": "google chrome export history", "longitude": -111.6426056, "fillKey": "bcolor"}, {"latitude": 47.6814875, "radius": 4, "name": "rstudio export plot as pdf no such file or directory", "longitude": -122.2087353, "fillKey": "bcolor"}, {"latitude": 37.421614, "radius": 4, "name": "wepay", "longitude": -122.137501, "fillKey": "bcolor"}, {"latitude": 33.120968, "radius": 4, "name": ".sexy domains", "longitude": -117.284241, "fillKey": "bcolor"}, {"latitude": 40.7591668, "radius": 4, "name": "nba", "longitude": -73.9761031, "fillKey": "bcolor"}, {"latitude": 41.018139, "radius": 4, "name": "giving pledge", "longitude": -75.9949252, "fillKey": "bcolor"}, {"latitude": 45.4521662, "radius": 4, "name": "python simple http server", "longitude": -122.7922968, "fillKey": "bcolor"}, {"latitude": 37.7770801, "radius": 4, "name": "nba mock draft 2014", "longitude": -122.464578, "fillKey": "bcolor"}, {"latitude": 17.4365946, "radius": 4, "name": "print thread id", "longitude": 78.4111861, "fillKey": "bcolor"}, {"latitude": 39.9680979, "radius": 4, "name": "cv.lm r", "longitude": -83.0051794, "fillKey": "bcolor"}, {"latitude": 34.067443, "radius": 4, "name": "kennedy wilson", "longitude": -118.406509, "fillKey": "bcolor"}, {"latitude": 37.3982869, "radius": 4, "name": "SEM VALUE MAX", "longitude": -122.0539066, "fillKey": "bcolor"}, {"latitude": 37.7869304, "radius": 4, "name": "define: linear regression", "longitude": -122.3996142, "fillKey": "bcolor"}, {"latitude": 32.050599, "radius": 4, "name": "rstudio save plot as pdf no such file", "longitude": 34.8176634, "fillKey": "bcolor"}, {"latitude": 37.785449, "radius": 4, "name": "bootstrap", "longitude": -122.38978, "fillKey": "bcolor"}], {
+                    popupTemplate: function(geo, data) {
+                   return "<div class='hoverinfo'>Search Term: " + data.name + "</div>";
+       }   
+      });
 
 	</script>
 	</body>
