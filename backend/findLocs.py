@@ -36,6 +36,6 @@ while len(line)>0:
     line = f.readline()
 f.close()
 f = open("jay.json", 'w')
-f.write(json.dump(searches))
+f.write(json.dumps(searches))
 f.close()
 #Create json representing circle objects and print to file that javascript can read in

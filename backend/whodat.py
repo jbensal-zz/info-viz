@@ -12,20 +12,23 @@ import requests, pythonwhois
 # given a domain, returns a lat,lng pair corresponding to the admin reported by WHOIS
 def whodat(host):
 	print "******", host
-	
+
 	try:
 		who = pythonwhois.get_whois(host)["contacts"]
 		dat = who["registrant"]
 		if not dat:
 			dat = pythonwhois.get_whois(host)["admin"]
+
+		state = ""
+		if "state" in dat.keys():
+			state = dat["state"]
+		country = ""
+		if "country" in dat.keys():
+			country = dat["country"]
+
+		addr = urlify(dat["street"], dat["city"], state, country)
 	except:
 		return None
-
-	state = ""
-	if "state" in dat.keys():
-		state = dat["state"]
-
-	addr = urlify(dat["street"], dat["city"], state, dat["country"])
 	return get_lat_lng(addr)
 
 # returns an address that get_lat_lng will take
@@ -47,6 +50,9 @@ def get_lat_lng(address):
 	if not r.json()['results']:
 		r.raise_for_status()
 	print "***", address
-	lat = r.json()['results'][0]["geometry"]["location"]["lat"]
-	lng = r.json()['results'][0]["geometry"]["location"]["lng"]
+	try:
+		lat = r.json()['results'][0]["geometry"]["location"]["lat"]
+		lng = r.json()['results'][0]["geometry"]["location"]["lng"]
+	except:
+		return None # it's not my fault that Poland is the worst
 	return lat, lng
