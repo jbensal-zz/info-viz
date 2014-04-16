@@ -11,7 +11,7 @@ import requests, pythonwhois
 
 # given a domain, returns a lat,lng pair corresponding to the admin reported by WHOIS
 def whodat(host):
-	print "******", host
+#	print "******", host
 
 	try:
 		who = pythonwhois.get_whois(host)["contacts"]
@@ -49,7 +49,7 @@ def get_lat_lng(address):
 	r = requests.get(host)
 	if not r.json()['results']:
 		r.raise_for_status()
-	print "***", address
+#	print "***", address
 	try:
 		lat = r.json()['results'][0]["geometry"]["location"]["lat"]
 		lng = r.json()['results'][0]["geometry"]["location"]["lng"]
