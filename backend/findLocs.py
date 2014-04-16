@@ -6,6 +6,7 @@ import json
 f = open("../data/jay_raw.txt", 'r')
 line = f.readline()
 searches = {}
+locations = {}
 while len(line)>0:
     words = line.split()
     if len(words)>0 and words[0] == "Searched":
@@ -21,7 +22,11 @@ while len(line)>0:
                 freq = 1
                 addr = words[-2]
             #find physical location for the address
-            loc = whodat(addr)
+            if addr in locations:
+                loc = locations[addr]
+            else:
+                loc = whodat(addr)
+                locations[addr] = loc
             #save into dict for that location
             if loc != None:
                 if loc in searches:
@@ -35,7 +40,18 @@ while len(line)>0:
             pass
     line = f.readline()
 f.close()
-f = open("jay.json", 'w')
-f.write(json.dumps(searches))
-f.close()
+objs = []
 #Create json representing circle objects and print to file that javascript can read in
+for key, val in searches.iteritems():
+    (name, freq) = val
+    (lat, lng) = key
+    d = {}
+    d["name"] = name
+    d["latitude"] = lat
+    d["longitude"] = lng
+    d["radius"] = freq
+    d["fillKey"] = 'bcolor'
+    objs.append(d)
+
+with open("jay.json", 'w') as f:
+    json.dump(objs, f)
