@@ -35,6 +35,8 @@ def urlify(street, city, state, country):
 def get_lat_lng(address):
 	host = "https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&sensor=false&key=AIzaSyBdX7bNut7Piqopr7zmUZLE8YkD_oPN_Xo"
 	r = requests.get(host)
+	if not r.json()['results']:
+		r.raise_for_status()
 	lat = r.json()['results'][0]["geometry"]["location"]["lat"]
 	lng = r.json()['results'][0]["geometry"]["location"]["lng"]
 	return lat, lng
