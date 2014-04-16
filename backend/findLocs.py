@@ -1,3 +1,5 @@
+#!/bin/python2
+
 from whodat import whodat
 import json
 #Read file in
